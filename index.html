@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Barcha5ir - Donnez, Partagez, Entraidez-vous</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <span class="logo-icon">🌿</span>
+      <span class="logo-text">Barcha<span class="logo-accent">5ir</span></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="showPage('home')" class="nav-link active">Accueil</a></li>
+      <li><a href="#" onclick="showPage('listings')" class="nav-link">Annonces</a></li>
+      <li><a href="#" onclick="showPage('publish')" class="nav-link">Publier</a></li>
+      <li><a href="#" onclick="showPage('profile')" class="nav-link" id="profileNavLink">Profil</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-login" onclick="showPage('auth')" id="loginBtn">
+        <i class="fas fa-user"></i> Connexion
+      </button>
+      <button class="btn-logout hidden" onclick="logout()" id="logoutBtn">
+        <i class="fas fa-sign-out-alt"></i> Déconnexion
+      </button>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== PAGE: HOME ===== -->
+<div id="page-home" class="page active">
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-overlay"></div>
+      <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1600&q=80" alt="hero" class="hero-img"/>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">🌿 Plateforme Tunisienne de Partage</div>
+      <h1 class="hero-title">
+        Donnez un nouveau <br/>
+        <span class="gradient-text">sens au partage</span>
+      </h1>
+      <p class="hero-subtitle">
+        « Ce que tu donnes revient toujours, sous une autre forme. »
+      </p>
+      <p class="hero-desc">
+        Barcha5ir est la plateforme tunisienne gratuite qui connecte les personnes qui souhaitent donner avec celles qui cherchent, pour réduire le gaspillage et renforcer la solidarité.
+      </p>
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="showPage('publish')">
+          <i class="fas fa-plus-circle"></i> Publier une annonce
+        </button>
+        <button class="btn-secondary" onclick="showPage('listings')">
+          <i class="fas fa-search"></i> Voir les annonces
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number" id="statDons">0</span>
+          <span class="stat-label">Dons publiés</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" id="statVilles">0</span>
+          <span class="stat-label">Villes actives</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" id="statUsers">0</span>
+          <span class="stat-label">Utilisateurs</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- Concept Section -->
+  <section class="concept-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Notre concept</span>
+        <h2 class="section-title">Comment fonctionne <span class="gradient-text">Barcha5ir</span> ?</h2>
+        <p class="section-subtitle">Deux mouvements simples pour une grande chaîne de solidarité</p>
+      </div>
+      <div class="concept-cards">
+        <div class="concept-card give-card">
+          <div class="concept-icon">
+            <i class="fas fa-hand-holding-heart"></i>
+          </div>
+          <h3>Je Donne</h3>
+          <p>Vous avez des objets, des compétences ou du temps à offrir ? Publiez une annonce gratuite et faites une différence dans la vie de quelqu'un.</p>
+          <ul class="concept-list">
+            <li><i class="fas fa-check"></i> Objets (meubles, vêtements, électronique...)</li>
+            <li><i class="fas fa-check"></i> Services (bricolage, déménagement, jardinage...)</li>
+            <li><i class="fas fa-check"></i> Compétences (cours, aide CV, informatique...)</li>
+          </ul>
+          <button class="concept-btn" onclick="showPage('publish')">Commencer à donner</button>
+        </div>
+        <div class="concept-divider">
+          <div class="divider-circle">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+        </div>
+        <div class="concept-card seek-card">
+          <div class="concept-icon">
+            <i class="fas fa-search-heart"></i>
+          </div>
+          <h3>Je Cherche</h3>
+          <p>Vous avez besoin de quelque chose ? Publiez votre demande ou parcourez les annonces disponibles dans votre ville.</p>
+          <ul class="concept-list">
+            <li><i class="fas fa-check"></i> Recherche d'objets spécifiques</li>
+            <li><i class="fas fa-check"></i> Demande de services bénévoles</li>
+            <li><i class="fas fa-check"></i> Besoin de compétences ou conseils</li>
+          </ul>
+          <button class="concept-btn" onclick="showPage('listings')">Chercher maintenant</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Catégories</span>
+        <h2 class="section-title">Explorez par <span class="gradient-text">catégorie</span></h2>
+      </div>
+      <div class="categories-grid">
+        <div class="category-card" onclick="filterAndShow('Objet')">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80" alt="Objets"/>
+            <div class="cat-overlay">
+              <i class="fas fa-couch"></i>
+            </div>
+          </div>
+          <div class="cat-info">
+            <h4>Objets</h4>
+            <p>Meubles, vêtements, électroménager...</p>
+            <span class="cat-count" id="countObjets">0 annonces</span>
+          </div>
+        </div>
+        <div class="category-card" onclick="filterAndShow('Service')">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&q=80" alt="Services"/>
+            <div class="cat-overlay">
+              <i class="fas fa-hands-helping"></i>
+            </div>
+          </div>
+          <div class="cat-info">
+            <h4>Services</h4>
+            <p>Bricolage, jardinage, garde animaux...</p>
+            <span class="cat-count" id="countServices">0 annonces</span>
+          </div>
+        </div>
+        <div class="category-card" onclick="filterAndShow('Compétence')">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=80" alt="Compétences"/>
+            <div class="cat-overlay">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+          </div>
+          <div class="cat-info">
+            <h4>Compétences</h4>
+            <p>Cours, aide CV, informatique...</p>
+            <span class="cat-count" id="countCompetences">0 annonces</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Listings -->
+  <section class="latest-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Récent</span>
+        <h2 class="section-title">Dernières <span class="gradient-text">annonces</span></h2>
+        <p class="section-subtitle">Découvrez les dernières publications de votre communauté</p>
+      </div>
+      <div class="listings-grid" id="homeListings"></div>
+      <div class="see-all-wrap">
+        <button class="btn-see-all" onclick="showPage('listings')">
+          Voir toutes les annonces <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how-section">
+    <div class="how-bg">
+      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80" alt="community"/>
+      <div class="how-overlay"></div>
+    </div>
+    <div class="container">
+      <div class="section-header light">
+        <span class="section-badge light">Processus</span>
+        <h2 class="section-title light">Comment ça marche ?</h2>
+        <p class="section-subtitle light">En 4 étapes simples</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+          <h4>Créez votre compte</h4>
+          <p>Inscrivez-vous gratuitement avec votre email et vos coordonnées.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <div class="step-icon"><i class="fas fa-edit"></i></div>
+          <h4>Publiez une annonce</h4>
+          <p>Décrivez ce que vous donnez ou ce que vous cherchez, ajoutez des photos.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <div class="step-icon"><i class="fas fa-comments"></i></div>
+          <h4>Contactez & réservez</h4>
+          <p>Contactez directement l'annonceur par téléphone ou WhatsApp.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">04</div>
+          <div class="step-icon"><i class="fas fa-heart"></i></div>
+          <h4>Échangez avec joie</h4>
+          <p>Donnez, recevez, et contribuez à la solidarité tunisienne.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <section class="quote-section">
+    <div class="container">
+      <div class="quote-carousel" id="quoteCarousel">
+        <div class="quote-item active">
+          <i class="fas fa-quote-left quote-icon"></i>
+          <p class="quote-text">« La générosité consiste à donner plus qu'on ne peut, et l'orgueil à prendre moins qu'on ne vous offre. »</p>
+          <span class="quote-author">— Khalil Gibran</span>
+        </div>
+        <div class="quote-item">
+          <i class="fas fa-quote-left quote-icon"></i>
+          <p class="quote-text">« Ce que tu donnes revient toujours, sous une autre forme. »</p>
+          <span class="quote-author">— Proverbe Tunisien</span>
+        </div>
+        <div class="quote-item">
+          <i class="fas fa-quote-left quote-icon"></i>
+          <p class="quote-text">« La solidarité n'est pas une question de charité, mais de justice. »</p>
+          <span class="quote-author">— Nelson Mandela</span>
+        </div>
+        <div class="quote-item">
+          <i class="fas fa-quote-left quote-icon"></i>
+          <p class="quote-text">« خير الناس أنفعهم للناس »</p>
+          <span class="quote-author">— Hadith Prophétique</span>
+        </div>
+      </div>
+      <div class="quote-dots" id="quoteDots"></div>
+    </div>
+  </section>
+
+  <!-- Impact Section -->
+  <section class="impact-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Impact</span>
+        <h2 class="section-title">Ensemble, réduisons <span class="gradient-text">le gaspillage</span></h2>
+      </div>
+      <div class="impact-grid">
+        <div class="impact-card">
+          <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=600&q=80" alt="environnement"/>
+          <div class="impact-info">
+            <h4><i class="fas fa-leaf"></i> Pour l'environnement</h4>
+            <p>Chaque objet donné est un objet de moins dans les décharges. Agissons ensemble pour la Tunisie.</p>
+          </div>
+        </div>
+        <div class="impact-card">
+          <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=600&q=80" alt="solidarité"/>
+          <div class="impact-info">
+            <h4><i class="fas fa-hands-helping"></i> Pour la solidarité</h4>
+            <p>Barcha5ir renforce les liens entre voisins et crée une communauté soudée.</p>
+          </div>
+        </div>
+        <div class="impact-card">
+          <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80" alt="famille"/>
+          <div class="impact-info">
+            <h4><i class="fas fa-home"></i> Pour les familles</h4>
+            <p>Des besoins essentiels couverts sans dépenses, pour un quotidien plus serein.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===== PAGE: AUTH ===== -->
+<div id="page-auth" class="page">
+  <div class="auth-page">
+    <div class="auth-bg">
+      <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=80" alt="auth bg"/>
+      <div class="auth-overlay"></div>
+    </div>
+    <div class="auth-container">
+      <div class="auth-brand">
+        <span class="logo-icon">🌿</span>
+        <span class="logo-text">Barcha<span class="logo-accent">5ir</span></span>
+        <p>Plateforme tunisienne de don et partage</p>
+      </div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchAuthTab('login')" id="tab-login">Connexion</button>
+        <button class="auth-tab" onclick="switchAuthTab('register')" id="tab-register">Inscription</button>
+      </div>
+
+      <!-- Login Form -->
+      <form class="auth-form" id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label><i class="fas fa-envelope"></i> Email</label>
+          <input type="email" id="loginEmail" placeholder="votre@email.com" required/>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-lock"></i> Mot de passe</label>
+          <div class="password-wrap">
+            <input type="password" id="loginPassword" placeholder="••••••••" required/>
+            <button type="button" class="show-pass" onclick="togglePassword('loginPassword')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <button type="submit" class="btn-auth">
+          <i class="fas fa-sign-in-alt"></i> Se connecter
+        </button>
+        <p class="auth-switch">Pas encore inscrit ? <a href="#" onclick="switchAuthTab('register')">Créer un compte</a></p>
+      </form>
+
+      <!-- Register Form -->
+      <form class="auth-form hidden" id="registerForm" onsubmit="handleRegister(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label><i class="fas fa-user"></i> Nom complet</label>
+            <input type="text" id="regName" placeholder="Votre nom" required/>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-envelope"></i> Email</label>
+            <input type="email" id="regEmail" placeholder="votre@email.com" required/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label><i class="fas fa-phone"></i> Téléphone</label>
+            <input type="tel" id="regPhone" placeholder="+216 XX XXX XXX" required/>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-map-marker-alt"></i> Gouvernorat</label>
+            <select id="regGov" required>
+              <option value="">Choisir...</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-city"></i> Ville</label>
+          <input type="text" id="regCity" placeholder="Votre ville"/>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-lock"></i> Mot de passe</label>
+          <div class="password-wrap">
+            <input type="password" id="regPassword" placeholder="••••••••" required/>
+            <button type="button" class="show-pass" onclick="togglePassword('regPassword')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <button type="submit" class="btn-auth">
+          <i class="fas fa-user-plus"></i> Créer mon compte
+        </button>
+        <p class="auth-switch">Déjà inscrit ? <a href="#" onclick="switchAuthTab('login')">Se connecter</a></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE: PUBLISH ===== -->
+<div id="page-publish" class="page">
+  <div class="publish-page">
+    <div class="page-hero-small">
+      <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1200&q=80" alt="publish"/>
+      <div class="page-hero-overlay"></div>
+      <div class="page-hero-content">
+        <h1><i class="fas fa-plus-circle"></i> Publier une annonce</h1>
+        <p>Partagez avec votre communauté</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="publish-container">
+        <form class="publish-form" id="publishForm" onsubmit="handlePublish(event)">
+
+          <!-- Type Selection -->
+          <div class="form-section">
+            <h3 class="form-section-title"><span>01</span> Type d'annonce</h3>
+            <div class="type-selector">
+              <label class="type-option" id="typeDonne">
+                <input type="radio" name="annType" value="Je donne" required/>
+                <div class="type-card">
+                  <i class="fas fa-hand-holding-heart"></i>
+                  <span>Je Donne</span>
+                  <p>J'offre quelque chose gratuitement</p>
+                </div>
+              </label>
+              <label class="type-option" id="typeCherche">
+                <input type="radio" name="annType" value="Je cherche" required/>
+                <div class="type-card">
+                  <i class="fas fa-search"></i>
+                  <span>Je Cherche</span>
+                  <p>Je recherche quelque chose</p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Category -->
+          <div class="form-section">
+            <h3 class="form-section-title"><span>02</span> Catégorie</h3>
+            <div class="cat-selector">
+              <label class="cat-option">
+                <input type="radio" name="annCat" value="Objet" required/>
+                <div class="cat-card">
+                  <i class="fas fa-couch"></i>
+                  <span>Objet</span>
+                </div>
+              </label>
+              <label class="cat-option">
+                <input type="radio" name="annCat" value="Service" required/>
+                <div class="cat-card">
+                  <i class="fas fa-hands-helping"></i>
+                  <span>Service</span>
+                </div>
+              </label>
+              <label class="cat-option">
+                <input type="radio" name="annCat" value="Compétence" required/>
+                <div class="cat-card">
+                  <i class="fas fa-graduation-cap"></i>
+                  <span>Compétence</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Title & Description -->
+          <div class="form-section">
+            <h3 class="form-section-title"><span>03</span> Détails</h3>
+            <div class="form-group">
+              <label><i class="fas fa-heading"></i> Titre de l'annonce</label>
+              <input type="text" id="annTitle" placeholder="Ex: Canapé en bon état, Cours de français..." required/>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-align-left"></i> Description</label>
+              <textarea id="annDesc" rows="5" placeholder="Décrivez votre annonce en détail : état, disponibilité, conditions..." required></textarea>
+            </div>
+          </div>
+
+          <!-- Images -->
+          <div class="form-section" id="imageSection">
+            <h3 class="form-section-title"><span>04</span> Images <span class="optional">(optionnel, pour les objets)</span></h3>
+            <div class="image-upload-area" id="imageUploadArea" onclick="document.getElementById('imageInput').click()">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Cliquez pour ajouter des photos</p>
+              <span>JPG, PNG — Max 5 photos</span>
+            </div>
+            <input type="file" id="imageInput" multiple accept="image/*" style="display:none" onchange="handleImages(event)"/>
+            <div class="image-preview-grid" id="imagePreviewGrid"></div>
+          </div>
+
+          <!-- Location -->
+          <div class="form-section">
+            <h3 class="form-section-title"><span>05</span> Localisation</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-map-marker-alt"></i> Gouvernorat</label>
+                <select id="annGov" required>
+                  <option value="">Choisir un gouvernorat...</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label><i class="fas fa-city"></i> Ville / Délégation</label>
+                <input type="text" id="annCity" placeholder="Ex: La Marsa, Raoued..." required/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact -->
+          <div class="form-section">
+            <h3 class="form-section-title"><span>06</span> Coordonnées</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-phone"></i> Téléphone</label>
+                <input type="tel" id="annPhone" placeholder="+216 XX XXX XXX"/>
+              </div>
+              <div class="form-group">
+                <label><i class="fab fa-whatsapp"></i> WhatsApp</label>
+                <input type="tel" id="annWhatsapp" placeholder="+216 XX XXX XXX"/>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-publish">
+            <i class="fas fa-paper-plane"></i> Publier l'annonce
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE: LISTINGS ===== -->
+<div id="page-listings" class="page">
+  <div class="page-hero-small">
+    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&q=80" alt="listings"/>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1><i class="fas fa-th-large"></i> Toutes les annonces</h1>
+      <p>Trouvez ce dont vous avez besoin dans votre région</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="filters-bar">
+      <div class="search-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Rechercher une annonce..." oninput="applyFilters()"/>
+      </div>
+      <div class="filters-group">
+        <select id="filterType" onchange="applyFilters()">
+          <option value="">Tous les types</option>
+          <option value="Je donne">Je donne</option>
+          <option value="Je cherche">Je cherche</option>
+        </select>
+        <select id="filterCat" onchange="applyFilters()">
+          <option value="">Toutes catégories</option>
+          <option value="Objet">Objet</option>
+          <option value="Service">Service</option>
+          <option value="Compétence">Compétence</option>
+        </select>
+        <select id="filterGov" onchange="applyFilters()">
+          <option value="">Tous gouvernorats</option>
+        </select>
+        <select id="filterStatus" onchange="applyFilters()">
+          <option value="">Tous statuts</option>
+          <option value="Disponible">Disponible</option>
+          <option value="Réservée">Réservée</option>
+          <option value="Donnée">Donnée</option>
+          <option value="Terminée">Terminée</option>
+        </select>
+        <button class="btn-reset-filter" onclick="resetFilters()">
+          <i class="fas fa-times"></i> Réinitialiser
+        </button>
+      </div>
+    </div>
+    <div class="results-info">
+      <span id="resultsCount">20 annonces trouvées</span>
+    </div>
+    <div class="listings-grid" id="mainListings"></div>
+    <div class="no-results hidden" id="noResults">
+      <i class="fas fa-search"></i>
+      <h3>Aucune annonce trouvée</h3>
+      <p>Essayez de modifier vos filtres</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE: DETAIL ===== -->
+<div id="page-detail" class="page">
+  <div class="container">
+    <button class="btn-back" onclick="goBack()">
+      <i class="fas fa-arrow-left"></i> Retour aux annonces
+    </button>
+    <div class="detail-container" id="detailContainer"></div>
+  </div>
+</div>
+
+<!-- ===== PAGE: PROFILE ===== -->
+<div id="page-profile" class="page">
+  <div class="page-hero-small">
+    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80" alt="profile"/>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1><i class="fas fa-user-circle"></i> Mon Profil</h1>
+      <p>Gérez vos annonces et informations</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="profile-container" id="profileContainer"></div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-icon">🌿</span>
+            <span class="logo-text">Barcha<span class="logo-accent">5ir</span></span>
+          </div>
+          <p>Plateforme tunisienne gratuite de don et de partage. Ensemble, aidons notre communauté et réduisons le gaspillage.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="social-link tiktok"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Liens utiles</h5>
+          <ul>
+            <li><a href="#" onclick="showPage('home')"><i class="fas fa-home"></i> Accueil</a></li>
+            <li><a href="#" onclick="showPage('listings')"><i class="fas fa-th-large"></i> Voir les annonces</a></li>
+            <li><a href="#" onclick="showPage('publish')"><i class="fas fa-plus"></i> Publier une annonce</a></li>
+            <li><a href="#" onclick="showPage('auth')"><i class="fas fa-user"></i> Connexion / Inscription</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>À propos</h5>
+          <p>Barcha5ir est née de la volonté de créer du lien social et de valoriser le partage en Tunisie. Notre mission : connecter les générosités pour un impact positif.</p>
+          <div class="footer-quote">
+            <i class="fas fa-quote-left"></i>
+            <span>Barcha5ir — Beaucoup de bien!</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <div class="footer-contact">
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>contact@barcha5ir.tn</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>+216 71 000 000</span>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-whatsapp"></i>
+              <span>+216 98 000 000</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Tunis, Tunisie</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>© 2025 <strong>Barcha5ir</strong>. Tous droits réservés. Fait avec <i class="fas fa-heart"></i> en Tunisie 🇹🇳</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast">
+  <i class="fas fa-check-circle"></i>
+  <span id="toastMsg"></span>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+<div class="modal" id="modal">
+  <div class="modal-header">
+    <h3 id="modalTitle"></h3>
+    <button onclick="closeModal()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="modal-body" id="modalBody"></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
